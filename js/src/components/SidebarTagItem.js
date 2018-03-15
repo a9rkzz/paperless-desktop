@@ -1,6 +1,7 @@
 import React from "react";
 import $ from "jquery";
 import PaperlessComponent from "./PaperlessComponent";
+import { MenuLink } from "bloomer";
 
 class SidebarTagItem extends PaperlessComponent {
 	// CONSTRUCTOR
@@ -47,22 +48,23 @@ class SidebarTagItem extends PaperlessComponent {
 
 	// RENDER
 	render() {
-		var itemClass = "nav-group-item";
 		if (this.state.active === true) {
-			itemClass += " active";
+			return (
+				<li>
+					<MenuLink onClick={this.setTagFilter.bind(this)} isActive>
+						{this.props.tag.name}
+					</MenuLink>
+				</li>
+			);
+		} else {
+			return (
+				<li>
+					<MenuLink onClick={this.setTagFilter.bind(this)}>
+						{this.props.tag.name}
+					</MenuLink>
+				</li>
+			);
 		}
-
-		return (
-			<span className={itemClass} onClick={this.setTagFilter.bind(this)}>
-				<span
-					className="icon icon-record"
-					style={{
-						color: this.getTagColor(this.props.tag.colour)
-					}}
-				/>
-				{this.props.tag.name}
-			</span>
-		);
 	}
 }
 

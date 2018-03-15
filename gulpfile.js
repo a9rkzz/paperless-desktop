@@ -1,21 +1,21 @@
-var gulp = require("gulp");
-var gutil = require("gulp-util");
-var gulpif = require("gulp-if");
-var streamify = require("gulp-streamify");
-var autoprefixer = require("gulp-autoprefixer");
-var cssmin = require("gulp-cssmin");
-var less = require("gulp-less");
-var concat = require("gulp-concat");
-var plumber = require("gulp-plumber");
-var source = require("vinyl-source-stream");
-var babelify = require("babelify");
-var browserify = require("browserify");
-var watchify = require("watchify");
-var uglify = require("gulp-uglify");
+const gulp = require("gulp");
+const gutil = require("gulp-util");
+const gulpif = require("gulp-if");
+const streamify = require("gulp-streamify");
+const autoprefixer = require("gulp-autoprefixer");
+const cssmin = require("gulp-cssmin");
+const less = require("gulp-less");
+const concat = require("gulp-concat");
+const plumber = require("gulp-plumber");
+const source = require("vinyl-source-stream");
+const babelify = require("babelify");
+const browserify = require("browserify");
+const watchify = require("watchify");
+const uglify = require("gulp-uglify");
 
-var production = false; //process.env.NODE_ENV === "production";
+const production = false; //process.env.NODE_ENV === "production";
 
-var dependencies = ["alt", "react", "react-dom", "react-router", "axios", "jquery", "moment"];
+const dependencies = ["alt", "react", "react-dom", "react-router", "axios", "jquery", "moment"];
 
 /*
  |--------------------------------------------------------------------------
@@ -75,14 +75,14 @@ gulp.task("browserify", ["browserify-vendor"], function() {
  |--------------------------------------------------------------------------
  */
 gulp.task("browserify-watch", ["browserify-vendor"], function() {
-	var bundler = watchify(browserify("main.js", watchify.args));
+	const bundler = watchify(browserify("main.js", watchify.args));
 	bundler.external(dependencies);
 	bundler.transform(babelify);
 	bundler.on("update", rebundle);
 	return rebundle();
 
 	function rebundle() {
-		var start = Date.now();
+		const start = Date.now();
 		return bundler
 			.bundle()
 			.on("error", function(err) {

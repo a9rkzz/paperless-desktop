@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 import PaperlessComponent from "./PaperlessComponent";
 import moment from "moment";
+import { Card, CardImage, Image, CardContent, Content, Tile } from "bloomer";
 
 String.prototype.trunc =
 	String.prototype.trunc ||
@@ -31,26 +32,22 @@ class DocumentItem extends PaperlessComponent {
 
 	// RENDER
 	render() {
-		var divStyle = {};
-		if ("data" in this.state) {
-			divStyle["backgroundImage"] = "url(" + this.state.data + ")";
-		}
-
 		return (
-			<Link className="document-item" to={"/document/" + this.props.document.id}>
-				<div className="document-item-thumbnail" style={divStyle} />
-				<div className="document-item-title">
-					{this.props.document.fresh ? (
-						<span
-							title="New document"
-							className="icon icon-plus-circled text-positive"
-						/>
-					) : null}
-					{this.props.document.fresh ? " " : null}
-					{this.props.document.title.trunc(100)}
-				</div>
-				<small>{moment(this.props.document.created).format("LLLL")}</small>
-			</Link>
+			<Tile isSize={1}>
+				<Link className="document-item" to={"/document/" + this.props.document.id}>
+					<Card>
+						<CardImage>
+							<Image isRatio="4:3" src={this.state.data} />
+						</CardImage>
+						<CardContent>
+							<Content>
+								<h3>{this.props.document.title.trunc(100)}</h3>
+								<small>{moment(this.props.document.created).format("LLLL")}</small>
+							</Content>
+						</CardContent>
+					</Card>
+				</Link>
+			</Tile>
 		);
 	}
 }

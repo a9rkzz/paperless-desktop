@@ -1,5 +1,6 @@
 import React from "react";
 import $ from "jquery";
+import { MenuLink } from "bloomer";
 
 class SidebarCorrespondentItem extends React.Component {
 	// CONSTRUCTOR
@@ -12,10 +13,7 @@ class SidebarCorrespondentItem extends React.Component {
 
 	// COMPONENT DID MOUNT
 	componentDidMount() {
-		$(window).on(
-			"changeExternCorrespendent",
-			this.changeExternCorrespendent.bind(this)
-		);
+		$(window).on("changeExternCorrespendent", this.changeExternCorrespendent.bind(this));
 	}
 
 	// COMPONENT WILL UNMOUNT
@@ -51,20 +49,23 @@ class SidebarCorrespondentItem extends React.Component {
 
 	// RENDER
 	render() {
-		var itemClass = "nav-group-item";
 		if (this.state.active === true) {
-			itemClass += " active";
+			return (
+				<li>
+					<MenuLink onClick={this.setCorrespondentFilter.bind(this)} isActive>
+						{this.props.correspondent.name}
+					</MenuLink>
+				</li>
+			);
+		} else {
+			return (
+				<li>
+					<MenuLink onClick={this.setCorrespondentFilter.bind(this)}>
+						{this.props.correspondent.name}
+					</MenuLink>
+				</li>
+			);
 		}
-
-		return (
-			<span
-				className={itemClass}
-				onClick={this.setCorrespondentFilter.bind(this)}
-			>
-				<span className="icon icon-user" />
-				{this.props.correspondent.name}
-			</span>
-		);
 	}
 }
 

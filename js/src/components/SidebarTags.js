@@ -2,6 +2,7 @@ import React from "react";
 import TagsActions from "../actions/TagsActions";
 import TagsStore from "../stores/TagsStore";
 import SidebarTagItem from "./SidebarTagItem";
+import { MenuList } from "bloomer";
 
 class SidebarTags extends React.Component {
 	// CONSTRUCTOR
@@ -32,9 +33,8 @@ class SidebarTags extends React.Component {
 		if (!this.state.tags || !("results" in this.state.tags)) return null;
 
 		return (
-			<nav className="nav-group">
-				<h5 className="nav-group-title">Tags</h5>
-				{this.state.tags.results.map(t => {
+			<MenuList>
+				{this.state.tags.results.map((t) => {
 					return (
 						<SidebarTagItem
 							tag={t}
@@ -43,7 +43,7 @@ class SidebarTags extends React.Component {
 						/>
 					);
 				})}
-			</nav>
+			</MenuList>
 		);
 	}
 }

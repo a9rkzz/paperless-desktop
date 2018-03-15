@@ -8,6 +8,7 @@ import $ from "jquery";
 import ToolbarActions from "../actions/ToolbarActions";
 import Waypoint from "react-waypoint";
 import axios from "axios";
+import { Columns, Column, Tile } from "bloomer";
 
 class Documents extends React.Component {
 	constructor(props) {
@@ -184,7 +185,7 @@ class Documents extends React.Component {
 
 		// eliminate duplicates from array
 		// https://stackoverflow.com/a/36744732/874508
-		var docs = this.state.documents.filter(
+		const docs = this.state.documents.filter(
 			(doc, index, self) =>
 				self.findIndex((d) => {
 					return d.id === doc.id;
@@ -192,12 +193,14 @@ class Documents extends React.Component {
 		);
 
 		return (
-			<div className="pane-group">
-				<Sidebar
-					setTagFilter={this.setTagFilter.bind(this)}
-					setCorrespondentFilter={this.setCorrespondentFilter.bind(this)}
-				/>
-				<div className="pane">
+			<Columns>
+				<Column isSize="1/4">
+					<Sidebar
+						setTagFilter={this.setTagFilter.bind(this)}
+						setCorrespondentFilter={this.setCorrespondentFilter.bind(this)}
+					/>
+				</Column>
+				<Column>
 					{docs.map((d) => {
 						return <DocumentItem document={d} key={"document_list_" + d.id} />;
 					})}
@@ -207,8 +210,8 @@ class Documents extends React.Component {
 							<div className="load-more">Loading...</div>
 						</Waypoint>
 					) : null}
-				</div>
-			</div>
+				</Column>
+			</Columns>
 		);
 	}
 }

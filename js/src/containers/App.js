@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Tabs from "../components/Tabs";
 import RemindersNotification from "../components/RemindersNotification";
+import { Container } from "bloomer";
 
 // IPC hack (https://medium.freecodecamp.com/building-an-electron-application-with-create-react-app-97945861647c#.gi5l2hzbq)
 const electron = window.require("electron");
@@ -28,13 +29,13 @@ class App extends React.Component {
 	// RENDER
 	render() {
 		return (
-			<div className="window">
-				<RemindersNotification />
+			<Container isFluid>
+				{/*<RemindersNotification />*/}
 				<Header history={this.props.history} />
 				<Tabs history={this.props.history} />
-				<div className="window-content">{this.props.children}</div>
+				{this.props.children}
 				<Footer />
-			</div>
+			</Container>
 		);
 	}
 }
