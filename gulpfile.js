@@ -15,18 +15,7 @@ var uglify = require("gulp-uglify");
 
 var production = false; //process.env.NODE_ENV === "production";
 
-var dependencies = [
-	"alt",
-	"react",
-	"react-dom",
-	"react-router",
-	"axios",
-	"jquery",
-	"moment",
-	"simple-react-pdf2",
-	"react-select2-wrapper",
-	"react-file-drop"
-];
+var dependencies = ["alt", "react", "react-dom", "react-router", "axios", "jquery", "moment"];
 
 /*
  |--------------------------------------------------------------------------
@@ -100,12 +89,7 @@ gulp.task("browserify-watch", ["browserify-vendor"], function() {
 				gutil.log(gutil.colors.red(err.toString()));
 			})
 			.on("end", function() {
-				gutil.log(
-					gutil.colors.green(
-						"Finished rebundling in",
-						Date.now() - start + "ms."
-					)
-				);
+				gutil.log(gutil.colors.green("Finished rebundling in", Date.now() - start + "ms."));
 			})
 			.pipe(source("bundle.js"))
 			.pipe(gulp.dest("js/"));

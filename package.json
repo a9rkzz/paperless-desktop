@@ -1,13 +1,12 @@
 {
 	"name": "paperless-desktop",
-	"version": "0.0.9",
+	"version": "0.1.0",
 	"description": "Desktop app that uses the paperless API to manage your documents",
 	"main": "main.js",
 	"scripts": {
 		"start": "gulp && electron .",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"package:mac":
-			"gulp && electron-packager ./ Paperless --platform=darwin --arch=all --out ./build --ignore='^/build$' --electron-version 1.4.13 --overwrite --icon=./icon.icns"
+		"package:mac": "gulp && electron-packager ./ Paperless --platform=darwin --arch=all --out ./build --ignore='^/build$' --electron-version 1.4.13 --overwrite --icon=./icon.icns"
 	},
 	"repository": {
 		"type": "git",
@@ -20,9 +19,6 @@
 		"babel": "^5.8.23",
 		"btoa": "^1.1.2",
 		"electron-dl": "^1.6.0",
-		"electron-gh-releases": "^2.0.4",
-		"electron-packager": "^8.4.0",
-		"electron-prebuilt": "^1.4.13",
 		"history": "^1.12.5",
 		"jquery": "^3.1.1",
 		"moment": "^2.17.1",
@@ -31,7 +27,6 @@
 		"react": "^15.4.1",
 		"react-big-calendar": "^0.13.0",
 		"react-dom": "^15.4.1",
-		"react-file-drop": "^0.1.8",
 		"react-pure-render": "^1.0.2",
 		"react-router": "^3.0.2",
 		"react-select": "^1.0.0-rc.3",
@@ -47,8 +42,8 @@
 	"devDependencies": {
 		"babelify": "^6.3.0",
 		"bower": "^1.6.3",
-		"browserify": "^11.2.0",
-		"electron": "^1.4.15",
+		"browserify": "^14.4.0",
+		"electron": "^1.8.3",
 		"gulp": "^3.9.0",
 		"gulp-autoprefixer": "^3.1.0",
 		"gulp-concat": "^2.6.0",
@@ -62,13 +57,17 @@
 		"vinyl-source-stream": "^1.1.0",
 		"watchify": "^3.4.0"
 	},
-	"keywords": ["paperless", "desktop", "electron"],
+	"keywords": [
+		"paperless",
+		"desktop",
+		"electron"
+	],
 	"author": "Thomas Brüggemann",
 	"license": "GPL-3.0",
 	"bugs": {
 		"url": "https://github.com/thomasbrueggemann/paperless-desktop/issues"
 	},
-	"homepage": "https://github.com/thomasbrueggemann/paperless-desktop#readme",
+	"homepage": "https://github.com/thomasbrueggemann/paperless-desktop",
 	"prettier": {
 		"printWidth": 100,
 		"useTabs": true,

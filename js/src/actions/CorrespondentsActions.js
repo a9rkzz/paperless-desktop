@@ -19,8 +19,7 @@ class CorrespondentsActions {
 
 	// GET CORRESPONDENTS
 	getCorrespondents() {
-		var url =
-			localStorage.getItem("settings.host") + "/api/correspondents/";
+		const url = localStorage.getItem("settings.host") + "/api/correspondents/";
 
 		axios({
 			method: "get",
@@ -36,25 +35,18 @@ class CorrespondentsActions {
 
 	// DELETE CORRESPONDENTS
 	deleteCorrespondents(ids) {
-		var that = this;
-
 		// asyncroniously delete all document ids
 		async.every(
 			ids,
 			(id, callback) => {
-				const url =
-					localStorage.getItem("settings.host") +
-					"/api/correspondents/" +
-					id;
+				const url = localStorage.getItem("settings.host") + "/api/correspondents/" + id;
 
 				// delete document
 				axios({
 					method: "delete",
 					url: url,
 					auth: {
-						username: localStorage.getItem(
-							"settings.auth.username"
-						),
+						username: localStorage.getItem("settings.auth.username"),
 						password: localStorage.getItem("settings.auth.password")
 					}
 				})
@@ -70,19 +62,18 @@ class CorrespondentsActions {
 				console.log(err, result);
 
 				if (err) {
-					return that.actions.deleteCorrespondentsFail(err);
+					return this.actions.deleteCorrespondentsFail(err);
 				}
 
 				// if result is true then every file exists
-				return that.actions.deleteCorrespondentsSuccess(ids);
+				return this.actions.deleteCorrespondentsSuccess(ids);
 			}
 		);
 	}
 
 	// ADD CORRESPONDENT
 	addCorrespondent(data) {
-		var url =
-			localStorage.getItem("settings.host") + "/api/correspondents/";
+		const url = localStorage.getItem("settings.host") + "/api/correspondents/";
 
 		axios({
 			method: "post",
@@ -99,11 +90,7 @@ class CorrespondentsActions {
 
 	// EDIT CORRESPONDENT
 	editCorrespondent(data) {
-		const url =
-			localStorage.getItem("settings.host") +
-			"/api/correspondents/" +
-			data.id +
-			"/";
+		const url = localStorage.getItem("settings.host") + "/api/correspondents/" + data.id + "/";
 
 		axios({
 			method: "put",

@@ -23,9 +23,7 @@ class DocumentsActions {
 			var parts = [];
 			for (var i in obj) {
 				if (obj.hasOwnProperty(i) && obj[i]) {
-					parts.push(
-						encodeURIComponent(i) + "=" + encodeURIComponent(obj[i])
-					);
+					parts.push(encodeURIComponent(i) + "=" + encodeURIComponent(obj[i]));
 				}
 			}
 			return parts.join("&");
@@ -72,10 +70,7 @@ class DocumentsActions {
 		this.actions.setLoading(true);
 		this.actions.resetDocuments();
 
-		const url =
-			localStorage.getItem("settings.host") +
-			"/api/documents/?search=" +
-			query;
+		const url = localStorage.getItem("settings.host") + "/api/documents/?search=" + query;
 
 		// fetch documents
 		axios({
@@ -98,25 +93,18 @@ class DocumentsActions {
 
 	// DELETE DOCUMENT
 	deleteDocuments(ids) {
-		var that = this;
-
 		// asyncroniously delete all document ids
 		async.every(
 			ids,
 			(id, callback) => {
-				var url =
-					localStorage.getItem("settings.host") +
-					"/api/documents/" +
-					id;
+				const url = localStorage.getItem("settings.host") + "/api/documents/" + id;
 
 				// delete document
 				axios({
 					method: "delete",
 					url: url,
 					auth: {
-						username: localStorage.getItem(
-							"settings.auth.username"
-						),
+						username: localStorage.getItem("settings.auth.username"),
 						password: localStorage.getItem("settings.auth.password")
 					}
 				})
@@ -129,11 +117,11 @@ class DocumentsActions {
 			},
 			(err, result) => {
 				if (err) {
-					return that.actions.deleteDocumentsFail(err);
+					return this.actions.deleteDocumentsFail(err);
 				}
 
 				// if result is true then every file exists
-				return that.actions.deleteDocumentsSuccess(result);
+				return this.actions.deleteDocumentsSuccess(result);
 			}
 		);
 	}
